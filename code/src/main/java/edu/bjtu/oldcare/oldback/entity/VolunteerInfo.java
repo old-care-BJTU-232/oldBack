@@ -34,41 +34,41 @@ public class VolunteerInfo {
     private String phone;
 
     @Column(name = "id_card")
-    private String idCard;
+    private String id_card;
 
     @Column(name = "birthday")
     private Date birthday;
 
     @Column(name = "checkin_date")
-    private Date hireDate;
+    private Date hire_date;
 
     @Column(name = "checkout_date")
-    private Date resignDate;
+    private Date resign_date;
 
     @Column(name = "imgset_dir")
-    private String imgsetDir;
+    private String imgset_dir;
 
     @Column(name = "profile_photo")
-    private String profilePhoto;
+    private String profile_photo;
 
     @Column(name = "DESCRIPTION")
-    private String description;
+    private String DESCRIPTION;
 
     @Column(name = "ISACTIVE")
-    private String isactive;
+    private String ISACTIVE;
 
     @Column(name = "CREATED")
-    private Date created;
+    private Date CREATED;
 
     @Column(name = "CREATEBY")
-    private Integer createby;
+    private Integer CREATEBY;
 
     @Column(name = "UPDATED")
-    private Date updated;
+    private Date UPDATED;
 
     @Column(name = "UPDATEBY")
-    private Integer updateby;
+    private Integer UPDATEBY;
 
     @Column(name = "REMOVE")
-    private String remove;
+    private String REMOVE;
 }

@@ -3,10 +3,17 @@ package edu.bjtu.oldcare.oldback.service.impl;
 import edu.bjtu.oldcare.oldback.entity.OldpersonInfo;
 import edu.bjtu.oldcare.oldback.repository.OldpersonInfoRepository;
 import edu.bjtu.oldcare.oldback.service.OldpersonInfoService;
+import edu.bjtu.oldcare.oldback.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OldpersonInfoServiceImpl implements OldpersonInfoService {
@@ -17,6 +24,11 @@ public class OldpersonInfoServiceImpl implements OldpersonInfoService {
     @Override
     public List<OldpersonInfo> findAll() {
         return oldpersonInfoRepository.findAll();
+    }
+
+    @Override
+    public List<OldpersonInfo> findAll2() {
+        return oldpersonInfoRepository.findAll2();
     }
 
     @Override
@@ -55,5 +67,36 @@ public class OldpersonInfoServiceImpl implements OldpersonInfoService {
     @Override
     public void updateOldperson(OldpersonInfo old) {
         oldpersonInfoRepository.save(old);
+    }
+
+    @Override
+    public int count() {
+        return oldpersonInfoRepository.countByID();
+    }
+
+    @Override
+    public List<Map<String,Integer>> countByGender() {
+        return oldpersonInfoRepository.countBySex();
+    }
+
+    @Override
+    public int countByAge(int min, int max) {
+        int count=0;
+        List<OldpersonInfo> list=oldpersonInfoRepository.findAll2();
+        Iterator<OldpersonInfo> iter = list.iterator();
+        while (iter.hasNext()){
+            OldpersonInfo o = (OldpersonInfo) iter.next();
+            int dif=TimeUtil.yearCompare(o.getBirthday(),new Date());
+            System.out.println(dif);
+            if(dif>=min && dif<=max){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int countByHealthState(String state) {
+        return oldpersonInfoRepository.countByHealth_state(state);
     }
 }

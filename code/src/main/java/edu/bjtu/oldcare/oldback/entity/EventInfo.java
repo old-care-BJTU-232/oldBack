@@ -39,5 +39,5 @@ public class EventInfo {
     private Integer oldperson_id;
 
     @Column(name = "img_url")
-    private Integer img_url;
+    private String img_url;
 }
