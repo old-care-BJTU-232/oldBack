@@ -59,6 +59,13 @@ public class eventInfoController {
     public Response addEvent(@RequestBody EventInfo eventInfo){
         eventInfo.setEvent_date(new Date());
         eventInfoService.addOne(eventInfo);
+        int type = eventInfo.getEvent_type();
+        System.out.println(type);
+        //向websocket推送  msg:type+desc
+        new testController().testSocket(eventInfo.getEvent_type()+eventInfo.getEvent_desc());
+//        if (type!=0&& type!=1){
+//            new testController().testSocket(eventInfo.getEvent_desc());
+//        }
         return Response.ok("插入成功");
     }
 }
